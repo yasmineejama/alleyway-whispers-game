@@ -83,7 +83,7 @@ const Index = () => {
     },
     4: {
       title: "The Captain Arrives",
-      content: "Your apartment building's lobby feels different when you finally drag yourself home. Commander Hayes leans against the mailboxes, his federal badge glinting under fluorescent lights. His jaw is set in that way that means trouble. 'We need to talk,' he says without preamble. 'Demon activity has spiked 400% worldwide in the last month. Whatever you're hunting in Macau, it's not isolated. My unit is taking point on this investigation, and whether you like it or not, you're involved.' His steel-gray eyes bore into yours. 'The question is: are you going to cooperate, or do I need to make this official?'",
+      content: "Your apartment building's lobby feels different when you finally drag yourself home. A stranger in a sharp suit leans against the mailboxes, and you instinctively reach for the silver blade at your hip. Then you notice the federal badge glinting under fluorescent lights. 'Easy,' he says, raising his hands slightly. 'Commander Hayes, Supernatural Investigation Unit.' His steel-gray eyes assess you with professional interest. 'You're the demon hunter who's been active in Macau. We need to talk. Demon activity has spiked 400% worldwide in the last month, and whatever you're hunting isn't isolated. My unit is taking point on this investigation.' He straightens, all business. 'The question is: are you going to cooperate, or do I need to make this official?'",
       image: portalBgImage,
       choices: [
         { id: 'cooperate_hayes', text: 'Agree to cooperate - you need resources' },
