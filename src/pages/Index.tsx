@@ -7,9 +7,10 @@ import { Button } from "@/components/ui/button";
 import { Sparkles, Play } from "lucide-react";
 
 // Import character images
-import protagonistImage from "@/assets/protagonist.jpg";
-import demonPrinceImage from "@/assets/demon-prince.jpg";
-import allyCharacterImage from "@/assets/ally-character.jpg";
+import mainCharacterImage from "@/assets/main-character.jpg";
+import weaponsSupplierImage from "@/assets/weapons-supplier.jpg";
+import captainImage from "@/assets/captain.jpg";
+import mysteriousManImage from "@/assets/mysterious-man.jpg";
 import portalBgImage from "@/assets/portal-bg.jpg";
 
 const Index = () => {
@@ -19,21 +20,30 @@ const Index = () => {
 
   const characters = [
     {
-      id: 'demon-prince',
-      name: 'Kael',
-      title: 'Demon Prince',
-      image: demonPrinceImage,
-      description: 'A mysterious and powerful demon prince who seems to know more about the portals than he lets on. His motives remain unclear.',
-      affection: 25,
+      id: 'weapons-supplier',
+      name: 'Marcus',
+      title: 'Weapons Supplier',
+      image: weaponsSupplierImage,
+      description: 'An easygoing and flirtatious supplier of enchanted weapons and charms. Knows more ancient lore than he lets on. Represents stability and safety.',
+      affection: 20,
       isUnlocked: true,
     },
     {
-      id: 'ally',
-      name: 'Riku',
-      title: 'Portal Researcher',
-      image: allyCharacterImage,
-      description: 'A kind researcher studying the mysterious portals. He offers his help in understanding the supernatural phenomena.',
-      affection: 15,
+      id: 'captain',
+      name: 'Commander Hayes',
+      title: 'Captain of Supernatural Investigation Unit',
+      image: captainImage,
+      description: 'An authoritative law-and-order type from NYC. Professionally interested in you due to spiking demon activity worldwide. Demands cooperation.',
+      affection: 10,
+      isUnlocked: true,
+    },
+    {
+      id: 'mysterious-man',
+      name: '???',
+      title: 'Mysterious Savior',
+      image: mysteriousManImage,
+      description: 'A silent, magnetic figure who appears during fights to tip the scales. Disappears before you can question him. Represents danger and forbidden allure.',
+      affection: 5,
       isUnlocked: false,
     },
   ];
