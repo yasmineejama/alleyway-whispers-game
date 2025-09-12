@@ -17,53 +17,107 @@ const Index = () => {
   const [activeTab, setActiveTab] = useState('story');
   const [currentChapter, setCurrentChapter] = useState(1);
   const [gameStarted, setGameStarted] = useState(false);
-
-  const characters = [
+  const [characters, setCharacters] = useState([
     {
       id: 'weapons-supplier',
       name: 'Marcus',
       title: 'Weapons Supplier',
       image: weaponsSupplierImage,
-      description: 'An easygoing and flirtatious supplier of enchanted weapons and charms. Knows more ancient lore than he lets on. Represents stability and safety.',
-      affection: 20,
+      description: 'Your reliable supplier of enchanted weapons and charms. Easygoing and flirtatious, but his quiet devotion runs deeper than his jokes. Represents the safe, familiar choice—but warns you not to trust outsiders.',
+      affection: 15,
       isUnlocked: true,
+      relationship: 'A steady presence who always has your back, but his protective nature might be stifling your independence.'
     },
     {
       id: 'captain',
       name: 'Commander Hayes',
       title: 'Captain of Supernatural Investigation Unit',
       image: captainImage,
-      description: 'An authoritative law-and-order type from NYC. Professionally interested in you due to spiking demon activity worldwide. Demands cooperation.',
+      description: 'An authoritative law-and-order type from NYC investigating the worldwide spike in demon activity. Pushes you to work "by the book" which clashes with your independence, but his protection comes with structure and control.',
       affection: 10,
       isUnlocked: true,
+      relationship: 'Professional tension with undeniable chemistry. His way would keep you safe but suffocate your freedom.'
     },
     {
       id: 'mysterious-man',
       name: '???',
       title: 'Mysterious Savior',
       image: mysteriousManImage,
-      description: 'A silent, magnetic figure who appears during fights to tip the scales. Disappears before you can question him. Represents danger and forbidden allure.',
+      description: 'A silent, magnetic figure who appears during fights just when you need him most. Disappears before you can question him, but the undeniable chemistry and his uncanny knowledge of your situation is both thrilling and unsettling.',
       affection: 5,
-      isUnlocked: false,
+      isUnlocked: true,
+      relationship: 'Dangerous attraction. You sense he\'s hiding something, but can\'t help trusting him when he saves your life.'
     },
-  ];
+  ]);
 
   const storyContent = {
     1: {
-      title: "The Alley Encounter",
-      content: "The neon lights of Macau's busy streets fade behind you as you chase the shadow into a narrow alley. Your heart pounds as you corner the demon, its red eyes glowing in the darkness. 'You cannot stop what has already begun,' it hisses before dissolving into mist, leaving behind only a strange crystalline fragment that pulses with otherworldly energy.",
+      title: "ACT I: The Hunt - Opening Battle",
+      content: "The narrow alley behind Macau's glittering casinos reeks of decay and something far worse. Your silver dagger gleams as you corner the baigujing—its bone-white face contorting into a grotesque smile. 'You think you understand the hunt, little slayer?' it hisses, its voice like grinding glass. 'The chains of the gods grow weak. Soon, your precious world will learn the truth.' You lunge forward, but the demon dissolves into mist, leaving behind only strange, pulsing energy residue and the echo of its cryptic words.",
       image: portalBgImage,
       choices: [
-        { id: 'investigate', text: 'Examine the crystal fragment carefully' },
-        { id: 'follow', text: 'Try to track where the demon went' },
-        { id: 'report', text: 'Contact the supernatural investigation unit' },
+        { id: 'examine_residue', text: 'Examine the strange energy residue carefully' },
+        { id: 'chase_demon', text: 'Try to track where the demon went' },
+        { id: 'call_contacts', text: 'Contact your network for information about "chains of the gods"' },
+      ]
+    },
+    2: {
+      title: "The Mysterious Savior",
+      content: "Just as you kneel to examine the residue, shadows move at the alley's mouth. Three more baigujing emerge, their bone faces gleaming in the neon light. Your charms are nearly depleted from the first fight. As claws reach for your throat, a figure drops from the fire escape above—silent, precise, deadly. He dispatches two demons before you can blink, his movements almost too fast to follow. When you turn to thank him, piercing dark eyes meet yours for just a moment before he melts back into the shadows. Gone. Like he was never there at all.",
+      image: portalBgImage,
+      choices: [
+        { id: 'follow_mysterious', text: 'Try to follow the mysterious man' },
+        { id: 'analyze_fighting', text: 'Analyze his fighting technique - it seemed familiar' },
+        { id: 'focus_mission', text: 'Focus on the mission - you need more supplies first' },
+      ]
+    },
+    3: {
+      title: "The Weapons Supplier",
+      content: "Marcus's shop smells like sage and old leather. He looks up from polishing a silver blade, that familiar easy grin spreading across his face. 'Let me guess—used up all your entrapment charms on some nasty piece of work?' His tone is light, but you catch the concern in his eyes as he takes in your torn jacket and the energy burns on your hands. 'You know I worry when you come in looking like you've been through a blender, sweetheart. Maybe it's time to consider taking on a partner?' He slides a fresh set of charms across the counter. 'These ones are stronger. But promise me you'll be careful?'",
+      image: portalBgImage,
+      choices: [
+        { id: 'flirt_marcus', text: 'Flirt back - his concern is sweet' },
+        { id: 'ask_about_chains', text: 'Ask him about "chains of the gods"' },
+        { id: 'keep_professional', text: 'Keep things professional - you need supplies, not complications' },
+      ]
+    },
+    4: {
+      title: "The Captain Arrives",
+      content: "Your apartment building's lobby feels different when you finally drag yourself home. Commander Hayes leans against the mailboxes, his federal badge glinting under fluorescent lights. His jaw is set in that way that means trouble. 'We need to talk,' he says without preamble. 'Demon activity has spiked 400% worldwide in the last month. Whatever you're hunting in Macau, it's not isolated. My unit is taking point on this investigation, and whether you like it or not, you're involved.' His steel-gray eyes bore into yours. 'The question is: are you going to cooperate, or do I need to make this official?'",
+      image: portalBgImage,
+      choices: [
+        { id: 'cooperate_hayes', text: 'Agree to cooperate - you need resources' },
+        { id: 'resist_authority', text: 'Resist - you work alone for a reason' },
+        { id: 'negotiate_terms', text: 'Negotiate - cooperation, but on your terms' },
       ]
     }
   };
 
   const handleChoice = (choiceId: string) => {
     console.log('Player chose:', choiceId);
-    // Handle story progression based on choice
+    
+    // Handle relationship changes based on choices
+    if (choiceId === 'flirt_marcus') {
+      // Increase Marcus affection
+      setCharacters(prev => prev.map(char => 
+        char.id === 'weapons-supplier' ? {...char, affection: char.affection + 5} : char
+      ));
+    } else if (choiceId === 'cooperate_hayes') {
+      // Increase Hayes affection
+      setCharacters(prev => prev.map(char => 
+        char.id === 'captain' ? {...char, affection: char.affection + 5} : char
+      ));
+    } else if (choiceId === 'follow_mysterious') {
+      // Increase mysterious man affection
+      setCharacters(prev => prev.map(char => 
+        char.id === 'mysterious-man' ? {...char, affection: char.affection + 5} : char
+      ));
+    }
+    
+    // Progress to next chapter
+    if (currentChapter < 4) {
+      setCurrentChapter(prev => prev + 1);
+    }
   };
 
   const handleCharacterSelect = (characterId: string) => {
@@ -129,17 +183,17 @@ const Index = () => {
     <div className="min-h-screen pb-20">
       <GameHeader 
         title="Portal Hearts" 
-        chapter={`Chapter ${currentChapter}: The First Encounter`}
+        chapter={storyContent[currentChapter]?.title || `Chapter ${currentChapter}`}
       />
       
       <main className="pt-20 container mx-auto px-4 py-8">
         {activeTab === 'story' && (
           <div className="max-w-4xl mx-auto">
             <StorySection
-              title={storyContent[1].title}
-              content={storyContent[1].content}
-              image={storyContent[1].image}
-              choices={storyContent[1].choices}
+              title={storyContent[currentChapter]?.title || "Chapter Complete"}
+              content={storyContent[currentChapter]?.content || "You've reached the end of Act I. More chapters coming soon..."}
+              image={storyContent[currentChapter]?.image || portalBgImage}
+              choices={storyContent[currentChapter]?.choices || []}
               onChoice={handleChoice}
             />
           </div>
