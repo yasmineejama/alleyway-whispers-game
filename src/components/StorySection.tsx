@@ -59,11 +59,11 @@ export const StorySection = ({
       </div>
 
       {choices && choices.length > 0 && (
-        <div className="max-h-screen overflow-y-auto">
+        <div className="h-screen overflow-y-auto">
           <h3 className="font-display font-semibold text-lg text-foreground mb-4">
             Choose your response:
           </h3>
-          <div className="space-y-3">
+          <div className="space-y-3 pb-4">
             {choices.map((choice) => (
               <Button
                 key={choice.id}
