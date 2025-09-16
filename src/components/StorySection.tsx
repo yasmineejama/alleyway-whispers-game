@@ -59,7 +59,7 @@ export const StorySection = ({
       </div>
 
       {choices && choices.length > 0 && (
-        <div className="space-y-3">
+        <div className="max-h-screen overflow-y-auto space-y-3">
           <h3 className="font-display font-semibold text-lg text-foreground mb-4">
             Choose your response:
           </h3>
