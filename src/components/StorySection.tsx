@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ChevronRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface StoryChoice {
   id: string;
@@ -59,24 +60,28 @@ export const StorySection = ({
       </div>
 
       {choices && choices.length > 0 && (
-        <div className="space-y-3">
+        <div>
           <h3 className="font-display font-semibold text-lg text-foreground mb-4">
             Choose your response:
           </h3>
-          {choices.map((choice) => (
-            <Button
-              key={choice.id}
-              variant="choice"
-              size="lg"
-              className={`w-full justify-between text-left h-auto py-4 px-6 ${
-                selectedChoice === choice.id ? 'border-primary bg-primary-soft' : ''
-              }`}
-              onClick={() => handleChoiceSelect(choice.id)}
-            >
-              <span className="flex-1">{choice.text}</span>
-              <ChevronRight className="h-5 w-5 opacity-50" />
-            </Button>
-          ))}
+          <ScrollArea className="max-h-96 pr-4">
+            <div className="space-y-3">
+              {choices.map((choice) => (
+                <Button
+                  key={choice.id}
+                  variant="choice"
+                  size="lg"
+                  className={`w-full justify-between text-left h-auto py-4 px-6 ${
+                    selectedChoice === choice.id ? 'border-primary bg-primary-soft' : ''
+                  }`}
+                  onClick={() => handleChoiceSelect(choice.id)}
+                >
+                  <span className="flex-1">{choice.text}</span>
+                  <ChevronRight className="h-5 w-5 opacity-50" />
+                </Button>
+              ))}
+            </div>
+          </ScrollArea>
         </div>
       )}
 
