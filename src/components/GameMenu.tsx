@@ -4,11 +4,9 @@ import { Button } from "@/components/ui/button";
 interface GameMenuProps {
   activeTab: string;
   onTabChange: (tab: string) => void;
-  currentChapter?: number;
-  totalChapters?: number;
 }
 
-export const GameMenu = ({ activeTab, onTabChange, currentChapter, totalChapters }: GameMenuProps) => {
+export const GameMenu = ({ activeTab, onTabChange }: GameMenuProps) => {
   const menuItems = [
     { id: 'story', label: 'Story', icon: Book },
     { id: 'characters', label: 'Characters', icon: Users },

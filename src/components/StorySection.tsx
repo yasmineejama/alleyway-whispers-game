@@ -9,26 +9,22 @@ interface StoryChoice {
 }
 
 interface StorySectionProps {
-  story: {
-    title: string;
-    content: string;
-    image?: string;
-    choices?: StoryChoice[];
-  };
+  title: string;
+  content: string;
+  image?: string;
+  choices?: StoryChoice[];
   onChoice?: (choiceId: string) => void;
   onContinue?: () => void;
-  currentChapter?: number;
-  totalChapters?: number;
 }
 
 export const StorySection = ({ 
-  story, 
+  title, 
+  content, 
+  image, 
+  choices, 
   onChoice, 
-  onContinue,
-  currentChapter,
-  totalChapters
+  onContinue 
 }: StorySectionProps) => {
-  const { title, content, image, choices } = story;
   const [selectedChoice, setSelectedChoice] = useState<string | null>(null);
 
   const handleChoiceSelect = (choiceId: string) => {
