@@ -59,26 +59,24 @@ export const StorySection = ({
       </div>
 
       {choices && choices.length > 0 && (
-        <div className="h-screen overflow-y-auto">
+        <div className="space-y-3">
           <h3 className="font-display font-semibold text-lg text-foreground mb-4">
             Choose your response:
           </h3>
-          <div className="space-y-3 pb-4">
-            {choices.map((choice) => (
-              <Button
-                key={choice.id}
-                variant="choice"
-                size="lg"
-                className={`w-full justify-between text-left h-auto py-4 px-6 ${
-                  selectedChoice === choice.id ? 'border-primary bg-primary-soft' : ''
-                }`}
-                onClick={() => handleChoiceSelect(choice.id)}
-              >
-                <span className="flex-1">{choice.text}</span>
-                <ChevronRight className="h-5 w-5 opacity-50" />
-              </Button>
-            ))}
-          </div>
+          {choices.map((choice) => (
+            <Button
+              key={choice.id}
+              variant="choice"
+              size="lg"
+              className={`w-full justify-between text-left h-auto py-4 px-6 ${
+                selectedChoice === choice.id ? 'border-primary bg-primary-soft' : ''
+              }`}
+              onClick={() => handleChoiceSelect(choice.id)}
+            >
+              <span className="flex-1">{choice.text}</span>
+              <ChevronRight className="h-5 w-5 opacity-50" />
+            </Button>
+          ))}
         </div>
       )}
 
