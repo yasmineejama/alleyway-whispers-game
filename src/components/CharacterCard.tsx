@@ -10,11 +10,12 @@ interface Character {
   description: string;
   affection: number;
   isUnlocked: boolean;
+  relationship?: string;
 }
 
 interface CharacterCardProps {
   character: Character;
-  onSelect: (characterId: string) => void;
+  onSelect?: (characterId: string) => void;
 }
 
 export const CharacterCard = ({ character, onSelect }: CharacterCardProps) => {
@@ -60,7 +61,7 @@ export const CharacterCard = ({ character, onSelect }: CharacterCardProps) => {
               </span>
             </div>
             
-            {character.isUnlocked && (
+            {character.isUnlocked && onSelect && (
               <Button 
                 variant="romantic" 
                 size="sm"
